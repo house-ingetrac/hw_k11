@@ -31,28 +31,7 @@ var drawDot = function(x, y){
 }
 */
 
-var runAnimation = function(obj){
-     // Delete last circle drawn -- stop motion animation
-    //clearBoard();SAVE FOR UPDATING ALL DOTS FUNCTION 
-    console.log("OBJ: ", obj);
-    // Every time a coordinate reaches an edge, reverse it to go in the opposite direction
-    if (obj.xCor >= 500 || obj.xCor <= 0){
-	obj.xAdd *= -1;
-    }
-    if (obj.yCor >= 500 || obj.yCor <= 0){
-	obj.yAdd *= -1;
-    }
 
-    // Update coordinates accordingly
-    obj.xCor += obj.xAdd;
-    obj.yCor += obj.yAdd;
-
-    // Draw new circle at coordinate
-    obj.update(obj.xCor, obj.yCor);
-    requestID = window.requestAnimationFrame(runAnimation);
-    console.log("REQID: ", obj.requestID);
-    return true;
-}
 
 var createDot = function(){
     var dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -108,6 +87,30 @@ var canvasClicked = function(e){
     }
 };
 */
+
+
+var runAnimation = function(obj){
+    // Delete last circle drawn -- stop motion animation
+    //clearBoard();SAVE FOR UPDATING ALL DOTS FUNCTION 
+    console.log("OBJ: ", obj);
+    // Every time a coordinate reaches an edge, reverse it to go in the opposite direction
+    if (obj.xCor >= 500 || obj.xCor <= 0){
+	obj.xAdd *= -1;
+    }
+    if (obj.yCor >= 500 || obj.yCor <= 0){
+	obj.yAdd *= -1;
+    }
+
+    // Update coordinates accordingly
+    obj.xCor += obj.xAdd;
+    obj.yCor += obj.yAdd;
+
+    // Draw new circle at coordinate
+    obj.update(obj.xCor, obj.yCor);
+    requestID = window.requestAnimationFrame(runAnimation);
+    console.log("REQID: ", obj.requestID);
+    return true;
+}
 
 //Remove all the inner nodes of the SVG area
 var clear = function(e){
